@@ -8,11 +8,32 @@
 
 import UIKit
 
+extension UIImageView {
+    func loadURL(_ url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+      return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+      self = self.capitalizingFirstLetter()
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

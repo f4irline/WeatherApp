@@ -15,6 +15,8 @@
 		AD65E58D2348A9E600AB39F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD65E58B2348A9E600AB39F9 /* LaunchScreen.storyboard */; };
 		AD65E5992348B3A600AB39F9 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E5982348B3A600AB39F9 /* ForecastViewController.swift */; };
 		AD65E59B2348B3C900AB39F9 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E59A2348B3C900AB39F9 /* CitiesViewController.swift */; };
+		AD65E59D2348B80E00AB39F9 /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E59C2348B80E00AB39F9 /* WeatherDTO.swift */; };
+		AD65E59F2348BB1600AB39F9 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E59E2348BB1600AB39F9 /* HttpService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		AD65E58E2348A9E600AB39F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD65E5982348B3A600AB39F9 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		AD65E59A2348B3C900AB39F9 /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
+		AD65E59C2348B80E00AB39F9 /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
+		AD65E59E2348BB1600AB39F9 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		AD65E5962348AD4500AB39F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AD65E59C2348B80E00AB39F9 /* WeatherDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 		AD65E5972348AF8000AB39F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AD65E59E2348BB1600AB39F9 /* HttpService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -180,7 +186,9 @@
 				AD65E59B2348B3C900AB39F9 /* CitiesViewController.swift in Sources */,
 				AD65E5992348B3A600AB39F9 /* ForecastViewController.swift in Sources */,
 				AD65E5812348A9E500AB39F9 /* AppDelegate.swift in Sources */,
+				AD65E59D2348B80E00AB39F9 /* WeatherDTO.swift in Sources */,
 				AD65E5832348A9E500AB39F9 /* SceneDelegate.swift in Sources */,
+				AD65E59F2348BB1600AB39F9 /* HttpService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
