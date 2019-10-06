@@ -32,5 +32,5 @@ struct City: Codable {
 struct Forecast: Codable {
     var main: Main
     var weather: [Weather]
-    var dt_txt: String
+    var dt: TimeInterval
 }

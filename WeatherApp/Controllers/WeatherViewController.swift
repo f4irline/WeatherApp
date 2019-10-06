@@ -24,11 +24,12 @@ class WeatherViewController: UIViewController {
     }
     
     func weatherCompleted(weather: WeatherDTO) {
-        self.cityLabel.text = weather.name
-        self.weatherLabel.text = "\(weather.main.temp) \u{00B0}C - \(weather.weather.last!.description.capitalizingFirstLetter())"
         let weatherImgUrl: URL? = URL(string: WeatherDTO.iconUrl(weather.weather.last!.icon))
-        weatherImg.loadURL(weatherImgUrl!)
-        loadingLabel.isHidden = true
+        weatherImg.loadURL(weatherImgUrl!, completeHandler: {() -> Void in
+            self.cityLabel.text = weather.name
+            self.weatherLabel.text = "\(weather.main.temp) \u{00B0}C - \(weather.weather.last!.description.capitalizingFirstLetter())"
+            self.loadingLabel.isHidden = true
+        })
     }
 
 }

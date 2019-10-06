@@ -24,7 +24,7 @@ class ForecastViewController: UIViewController {
 
     func forecastCompleted(forecast: WeatherForecastDTO) {
         for date in forecast.list {
-            forecastDataSource.forecast.append("\(date.weather.last!.main)")
+            forecastDataSource.forecast.append(date)
         }
         
         forecastTable.reloadData()
