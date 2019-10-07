@@ -8,14 +8,24 @@
 
 import UIKit
 
+let imageCache = NSCache<NSString, UIImage>()
+
 extension UIImageView {
     func loadURL(_ url: URL, completeHandler: (() -> Void)?) {
         DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                        completeHandler?()
+            if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+                DispatchQueue.main.async {
+                    self?.image = cachedImage
+                    completeHandler?()
+                }
+            } else {
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self?.image = image
+                            imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                            completeHandler?()
+                        }
                     }
                 }
             }
