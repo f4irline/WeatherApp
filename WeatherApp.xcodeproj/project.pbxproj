@@ -19,6 +19,7 @@
 		AD65E59F2348BB1600AB39F9 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E59E2348BB1600AB39F9 /* HttpService.swift */; };
 		ADAE22DE234A39520014FC62 /* WeatherForecastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAE22DD234A39520014FC62 /* WeatherForecastDTO.swift */; };
 		ADAE22E1234A3FC00014FC62 /* ForecastDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAE22E0234A3FC00014FC62 /* ForecastDataSource.swift */; };
+		ADD158EF234C9A1C00F453CA /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD158EE234C9A1C00F453CA /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		AD65E59E2348BB1600AB39F9 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		ADAE22DD234A39520014FC62 /* WeatherForecastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastDTO.swift; sourceTree = "<group>"; };
 		ADAE22E0234A3FC00014FC62 /* ForecastDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataSource.swift; sourceTree = "<group>"; };
+		ADD158EE234C9A1C00F453CA /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				AD65E59E2348BB1600AB39F9 /* HttpService.swift */,
+				ADD158EE234C9A1C00F453CA /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				AD65E5992348B3A600AB39F9 /* ForecastViewController.swift in Sources */,
 				AD65E5812348A9E500AB39F9 /* AppDelegate.swift in Sources */,
 				AD65E59D2348B80E00AB39F9 /* WeatherDTO.swift in Sources */,
+				ADD158EF234C9A1C00F453CA /* DatabaseService.swift in Sources */,
 				AD65E5832348A9E500AB39F9 /* SceneDelegate.swift in Sources */,
 				AD65E59F2348BB1600AB39F9 /* HttpService.swift in Sources */,
 				ADAE22E1234A3FC00014FC62 /* ForecastDataSource.swift in Sources */,
