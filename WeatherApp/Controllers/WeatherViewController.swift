@@ -27,7 +27,7 @@ class WeatherViewController: UIViewController {
         let weatherImgUrl: URL? = URL(string: WeatherDTO.iconUrl(weather.weather.last!.icon))
         weatherImg.loadURL(weatherImgUrl!, completeHandler: {() -> Void in
             self.cityLabel.text = weather.name
-            self.weatherLabel.text = "\(weather.main.temp) \u{00B0}C - \(weather.weather.last!.description.capitalizingFirstLetter())"
+            self.weatherLabel.text = "\(weather.main.temp) \u{00B0}C - \(weather.weather.last!.weatherDescription!.capitalizingFirstLetter())"
             self.loadingLabel.isHidden = true
         })
     }

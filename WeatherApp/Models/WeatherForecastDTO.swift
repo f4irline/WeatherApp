@@ -8,9 +8,10 @@
 
 import CoreLocation
 
-struct WeatherForecastDTO: Codable {
+class WeatherForecastDTO: NSObject, Codable, NSCoding {
     var city: City
     var list: [Forecast]
+    var date: Date?
     
     static func forecastEndpointByCity(_ city: String) -> String {
         return "https://api.openweathermap.org/data/2.5/forecast?q=\(city)&units=metric&APPID=\(HttpService.API_KEY)"
@@ -23,14 +24,48 @@ struct WeatherForecastDTO: Codable {
     static func iconUrl(_ icon: String) -> String {
         return "https://openweathermap.org/img/wn/\(icon)@2x.png"
     }
+    
+    required init(coder decoder: NSCoder) {
+        city = decoder.decodeObject(forKey: "cityName") as! City
+        list = decoder.decodeObject(forKey: "list") as! [Forecast]
+        date = decoder.decodeObject(forKey: "date") as! Date?
+    }
+    
+    func encode(with encoder: NSCoder) {
+        encoder.encode(city, forKey: "cityName")
+        encoder.encode(list, forKey: "list")
+        if let date = date {
+            encoder.encode(date, forKey: "date")
+        }
+    }
 }
 
-struct City: Codable {
+class City: NSObject, Codable, NSCoding {
     var name: String
+    
+    required init(coder decoder: NSCoder) {
+        name = decoder.decodeObject(forKey: "name") as! String
+    }
+    
+    func encode(with encoder: NSCoder) {
+        encoder.encode(name, forKey: "name")
+    }
 }
 
-struct Forecast: Codable {
+class Forecast: NSObject, Codable, NSCoding {
     var main: Main
     var weather: [Weather]
     var dt: TimeInterval
+    
+    required init(coder decoder: NSCoder) {
+        main = decoder.decodeObject(forKey: "main") as! Main
+        weather = decoder.decodeObject(forKey: "weather") as! [Weather]
+        dt = decoder.decodeObject(forKey: "dt") as! TimeInterval
+    }
+    
+    func encode(with encoder: NSCoder) {
+        encoder.encode(main, forKey: "main")
+        encoder.encode(weather, forKey: "weather")
+        encoder.encode(dt, forKey: "dt")
+    }
 }

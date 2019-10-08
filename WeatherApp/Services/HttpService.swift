@@ -10,19 +10,28 @@ import Foundation
 
 class HttpService {
     static let API_KEY = "c52ed41e6b828d41c7a301e0e191d409"
-
+    let databaseService: DatabaseService = DatabaseService()
+    
     func weatherByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherDTO) -> Void) {
-        let config = URLSessionConfiguration.default
-        
-        let session = URLSession(configuration: config)
+        let cachedWeather = databaseService.getCachedWeather(city)
+
+        if let weather = cachedWeather {
+            completionHandler(weather)
+            return
+        }
         
         let url: URL? = URL(string: WeatherDTO.weatherEndpointByCity(city))
         
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+                
         func parseJson(data: Data?, response: URLResponse?, error: Error?) {
             let decoder = JSONDecoder()
             do {
                 let weather = try decoder.decode(WeatherDTO.self, from: data!)
                 DispatchQueue.main.async {
+                    weather.date = Date()
+                    self.databaseService.saveWeather(weather)
                     completionHandler(weather)
                 }
             } catch {
@@ -37,18 +46,26 @@ class HttpService {
     }
     
     func weatherForecastByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherForecastDTO) -> Void) {
-        let config = URLSessionConfiguration.default
+        let cachedForecast = databaseService.getCachedForecast(city)
         
-        let session = URLSession(configuration: config)
+        if let forecast = cachedForecast {
+            completionHandler(forecast)
+            return
+        }
         
         let url: URL? = URL(string: WeatherForecastDTO.forecastEndpointByCity(city))
+
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
         
         func parseJson(data: Data?, response: URLResponse?, error: Error?) {
             let decoder = JSONDecoder()
             do {
-                let weather = try decoder.decode(WeatherForecastDTO.self, from: data!)
+                let weatherForecast = try decoder.decode(WeatherForecastDTO.self, from: data!)
                 DispatchQueue.main.async {
-                    completionHandler(weather)
+                    weatherForecast.date = Date()
+                    self.databaseService.saveForecast(weatherForecast)
+                    completionHandler(weatherForecast)
                 }
             } catch {
                 NSLog("Error trying to convert data to JSON")
