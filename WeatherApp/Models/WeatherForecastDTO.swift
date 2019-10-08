@@ -60,7 +60,7 @@ class Forecast: NSObject, Codable, NSCoding {
     required init(coder decoder: NSCoder) {
         main = decoder.decodeObject(forKey: "main") as! Main
         weather = decoder.decodeObject(forKey: "weather") as! [Weather]
-        dt = decoder.decodeObject(forKey: "dt") as! TimeInterval
+        dt = decoder.decodeDouble(forKey: "dt")
     }
     
     func encode(with encoder: NSCoder) {
