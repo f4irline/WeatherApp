@@ -36,6 +36,7 @@ final class DatabaseService {
             do {
                 let location = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Location
                 self.currentLocation = location
+                NSLog("Initialized current location")
             } catch {
                 NSLog("Error getting cached location")
             }
@@ -49,6 +50,7 @@ final class DatabaseService {
             do {
                 let locations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Location]
                 self.locations = locations
+                NSLog("Initialized locations")
             } catch {
                 NSLog("Error getting cached locations")
             }
@@ -67,8 +69,8 @@ final class DatabaseService {
                 let weather = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherDTO
                 if let date = weather.date?.timeIntervalSinceNow {
                     if (date <= halfHourInSeconds) {
-                        NSLog("Got weather: \(String(describing: weather.date?.description))")
                         self.lastWeather = weather
+                        NSLog("Got weather: \(String(describing: weather.date?.description))")
                     }
                 }
             } catch {
@@ -84,8 +86,8 @@ final class DatabaseService {
                 let forecast = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherForecastDTO
                 if let date = forecast.date?.timeIntervalSinceNow {
                     if (date <= halfHourInSeconds) {
-                        NSLog("Got weather: \(String(describing: forecast.date?.description))")
                         self.lastForecast = forecast
+                        NSLog("Got weather: \(String(describing: forecast.date?.description))")
                     }
                 }
             } catch {
