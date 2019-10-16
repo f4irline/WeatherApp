@@ -20,10 +20,12 @@ class Location: NSObject, NSCoding {
         super.init()
         city = decoder.decodeObject(forKey: "cityName") as! String
         coordinates = decoder.decodeObject(forKey: "coordinates") as! CLLocation
+        active = decoder.decodeBool(forKey: "active")
     }
     
     func encode(with encoder: NSCoder) {
         encoder.encode(city, forKey: "cityName")
         encoder.encode(coordinates, forKey: "coordinates")
+        encoder.encode(active, forKey: "active")
     }
 }
