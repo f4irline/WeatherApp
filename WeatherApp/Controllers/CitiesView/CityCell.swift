@@ -10,7 +10,7 @@ import UIKit
 
 class CityCell: UITableViewCell {
     
-    var location: Location?;
+    var location: Location?
 
     override func awakeFromNib() {
         super.awakeFromNib()
