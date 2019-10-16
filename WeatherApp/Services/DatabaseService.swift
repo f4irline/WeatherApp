@@ -58,6 +58,7 @@ final class DatabaseService {
             locations = [Location]()
             
             let gps = Location()
+            gps.active = true
             locations?.append(gps)
         }
     }
