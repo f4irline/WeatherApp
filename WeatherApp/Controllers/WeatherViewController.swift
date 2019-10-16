@@ -19,8 +19,16 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        httpService.weatherByCity("Tampere", completionHandler: weatherCompleted)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let locations = DatabaseService.locations,
+            let location = locations.first(where: { $0.active }) {
+            if (location.city != "Use GPS") {
+                httpService.weatherByCity(location.city, completionHandler: weatherCompleted)
+            }
+        }
     }
     
     func weatherCompleted(weather: WeatherDTO) {

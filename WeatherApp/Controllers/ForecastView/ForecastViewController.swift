@@ -16,11 +16,16 @@ class ForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        httpService.weatherForecastByCity("Tampere", completionHandler: forecastCompleted)
         forecastTable.dataSource = forecastDataSource
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let locations = DatabaseService.locations,
+            let location = locations.first(where: { $0.active }) {
+            httpService.weatherForecastByCity(location.city, completionHandler: forecastCompleted)
+        }
+    }
 
     func forecastCompleted(forecast: WeatherForecastDTO) {
         for date in forecast.list {

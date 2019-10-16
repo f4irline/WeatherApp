@@ -130,17 +130,69 @@
                     <view key="view" contentMode="scaleToFill" id="Zjw-B8-0in">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bww-ji-FXl">
+                                <rect key="frame" x="20" y="52" width="374" height="658.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationIdentifier" id="hXV-gD-Xv4" customClass="CityCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hXV-gD-Xv4" id="JLv-Hs-TMW">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9aW-zA-kgo">
+                                <rect key="frame" x="20" y="759" width="295" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i49-Rl-aNM">
+                                <rect key="frame" x="335" y="763" width="59" height="30"/>
+                                <state key="normal" title="Add City"/>
+                                <connections>
+                                    <action selector="addLocation:" destination="9vk-6a-pSc" eventType="touchUpInside" id="v1q-70-tNc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a new city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caM-iI-1iP">
+                                <rect key="frame" x="30" y="730.5" width="113" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="i49-Rl-aNM" firstAttribute="leading" secondItem="9aW-zA-kgo" secondAttribute="trailing" constant="20" id="4wg-Hb-ZIb"/>
+                            <constraint firstItem="CxY-x1-wCF" firstAttribute="trailing" secondItem="i49-Rl-aNM" secondAttribute="trailing" constant="20" id="6zM-aX-oZu"/>
+                            <constraint firstItem="CxY-x1-wCF" firstAttribute="bottom" secondItem="i49-Rl-aNM" secondAttribute="bottom" constant="20" id="CYw-us-1Rp"/>
+                            <constraint firstItem="CxY-x1-wCF" firstAttribute="trailing" secondItem="caM-iI-1iP" secondAttribute="trailing" constant="271" id="Fy5-PE-42j"/>
+                            <constraint firstItem="i49-Rl-aNM" firstAttribute="leading" secondItem="9aW-zA-kgo" secondAttribute="trailing" constant="20" id="WAC-IU-4uX"/>
+                            <constraint firstItem="9aW-zA-kgo" firstAttribute="leading" secondItem="CxY-x1-wCF" secondAttribute="leading" constant="20" id="X4W-Ny-fvN"/>
+                            <constraint firstItem="Bww-ji-FXl" firstAttribute="top" secondItem="CxY-x1-wCF" secondAttribute="top" constant="8" id="Xhe-aS-dSL"/>
+                            <constraint firstItem="Bww-ji-FXl" firstAttribute="leading" secondItem="CxY-x1-wCF" secondAttribute="leading" constant="20" id="Xp5-no-EEg"/>
+                            <constraint firstItem="caM-iI-1iP" firstAttribute="leading" secondItem="CxY-x1-wCF" secondAttribute="leading" constant="30" id="Y1S-9m-dtJ"/>
+                            <constraint firstItem="CxY-x1-wCF" firstAttribute="bottom" secondItem="9aW-zA-kgo" secondAttribute="bottom" constant="20" id="a8g-NL-C0k"/>
+                            <constraint firstItem="9aW-zA-kgo" firstAttribute="top" secondItem="caM-iI-1iP" secondAttribute="bottom" constant="8" id="rmJ-aH-p9J"/>
+                            <constraint firstItem="caM-iI-1iP" firstAttribute="top" secondItem="Bww-ji-FXl" secondAttribute="bottom" constant="20" id="rwP-hk-MWK"/>
+                            <constraint firstItem="CxY-x1-wCF" firstAttribute="trailing" secondItem="Bww-ji-FXl" secondAttribute="trailing" constant="20" id="uSO-Hf-Hh9"/>
+                            <constraint firstItem="9aW-zA-kgo" firstAttribute="top" secondItem="caM-iI-1iP" secondAttribute="bottom" constant="8" id="xaJ-IE-1k7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CxY-x1-wCF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CXp-z1-QX2"/>
+                    <tabBarItem key="tabBarItem" title="Cities" id="CXp-z1-QX2"/>
                     <connections>
+                        <outlet property="citiesTable" destination="Bww-ji-FXl" id="UCQ-wV-5iK"/>
+                        <outlet property="newLocation" destination="9aW-zA-kgo" id="ejn-dy-gvp"/>
                         <outlet property="view" destination="Zjw-B8-0in" id="fLF-Zc-ttS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjh-tn-ko6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952" y="869"/>
+            <point key="canvasLocation" x="950.72463768115949" y="868.52678571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eRf-cA-OPE">
