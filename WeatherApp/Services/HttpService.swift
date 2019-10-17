@@ -12,7 +12,7 @@ class HttpService {
     static let API_KEY = "c52ed41e6b828d41c7a301e0e191d409"
     
     func weatherByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherDTO) -> Void) {
-        let cachedWeather = DatabaseService.getCachedWeather()
+        let cachedWeather = DatabaseService.getCachedWeather(city)
 
         if let weather = cachedWeather {
             completionHandler(weather)
@@ -30,7 +30,7 @@ class HttpService {
                 let weather = try decoder.decode(WeatherDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weather.date = Date()
-                    DatabaseService.lastWeather = weather
+                    DatabaseService.saveWeather(weather)
                     completionHandler(weather)
                 }
             } catch {
@@ -45,12 +45,14 @@ class HttpService {
     }
     
     func weatherForecastByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherForecastDTO) -> Void) {
-        let cachedForecast = DatabaseService.getCachedForecast()
+        let cachedForecast = DatabaseService.getCachedForecast(city)
         
         if let forecast = cachedForecast {
             completionHandler(forecast)
             return
         }
+        
+        NSLog("City: \(city)")
         
         let url: URL? = URL(string: WeatherForecastDTO.forecastEndpointByCity(city))
 
@@ -63,7 +65,7 @@ class HttpService {
                 let weatherForecast = try decoder.decode(WeatherForecastDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weatherForecast.date = Date()
-                    DatabaseService.lastForecast = weatherForecast
+                    DatabaseService.saveForecast(weatherForecast)
                     completionHandler(weatherForecast)
                 }
             } catch {

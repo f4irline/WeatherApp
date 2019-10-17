@@ -23,11 +23,14 @@ class ForecastViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if let locations = DatabaseService.locations,
             let location = locations.first(where: { $0.active }) {
-            httpService.weatherForecastByCity(location.city, completionHandler: forecastCompleted)
+            if (location.city != "Use GPS") {
+                httpService.weatherForecastByCity(location.city, completionHandler: forecastCompleted)
+            }
         }
     }
 
     func forecastCompleted(forecast: WeatherForecastDTO) {
+        forecastDataSource.forecast = []
         for date in forecast.list {
             forecastDataSource.forecast.append(date)
         }
