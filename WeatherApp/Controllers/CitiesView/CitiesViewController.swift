@@ -17,20 +17,19 @@ class CitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locations = DatabaseService.locations
         
         citiesTable.dataSource = locationsDataSource
         
-        if let locations = self.locations {
-            for location in locations {
-                locationsDataSource.locations.append(location)
-            }
+        if let locations = self.locations {            
+            locationsDataSource.locations = locations
         }
                 
         citiesTable.reloadData()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func addLocation(_ sender: Any) {
         let location = Location()
         if let loc = newLocation.text {

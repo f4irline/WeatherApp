@@ -21,7 +21,7 @@ class CityCell: UITableViewCell {
 
     @objc override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         if let location = self.location,
             let locationSwitch = self.accessoryView as? UISwitch {
             location.active = selected
@@ -35,7 +35,6 @@ class CityCell: UITableViewCell {
         self.textLabel?.text = location.city
         
         let locationSwitch = UISwitch()
-        locationSwitch.setOn(location.active, animated: true)
         locationSwitch.isUserInteractionEnabled = false
 
         self.accessoryView = locationSwitch

@@ -23,8 +23,12 @@ class CitiesDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationIdentifier", for: indexPath) as! CityCell
         let location: Location = locations[indexPath.row]
-        
+                
         cell.setLocation(location)
+        
+        if (location.active) {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
                                 
         return cell
     }
