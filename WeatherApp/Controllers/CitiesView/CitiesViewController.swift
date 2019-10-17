@@ -32,15 +32,15 @@ class CitiesViewController: UIViewController {
     
     @IBAction func addLocation(_ sender: Any) {
         let location = Location()
-        if let loc = newLocation.text {
-            location.city = loc
+        if let name = newLocation.text {
+            location.city = name
+            location.active = true
             locationsDataSource.locations.append(location)
             DatabaseService.locations?.append(location)
             
             citiesTable.reloadData()
         }
 
-        
         newLocation.text = ""
     }
 }
