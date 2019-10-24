@@ -12,6 +12,8 @@ import CoreLocation
 class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     let forecastDataSource: ForecastDataSource = ForecastDataSource()
     
+    let spinner = SpinnerViewController()
+    
     let locationManager = CLLocationManager()
     let httpService: HttpService = HttpService()
 
@@ -34,6 +36,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        startSpinner()
         if let locations = DatabaseService.locations,
             let location = locations.first(where: { $0.active }) {
             if (location.city != "Use GPS") {
@@ -43,6 +46,28 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        resetView()
+    }
+    
+    func startSpinner() {
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+    }
+    
+    func stopSpinner() {
+        spinner.willMove(toParent: nil)
+        spinner.view.removeFromSuperview()
+        spinner.removeFromParent()
+    }
+    
+    func resetView() {
+        forecastDataSource.forecast = []
+        forecastTable.reloadData()
+    }
 
     func forecastCompleted(forecast: WeatherForecastDTO) {
         forecastDataSource.forecast = []
@@ -51,6 +76,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         forecastTable.reloadData()
+        stopSpinner()
     }
 }
 

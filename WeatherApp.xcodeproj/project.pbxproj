@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD14DDC523621F7100E4D09E /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD14DDC423621F7100E4D09E /* SpinnerViewController.swift */; };
 		AD65E5812348A9E500AB39F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E5802348A9E500AB39F9 /* AppDelegate.swift */; };
 		AD65E5832348A9E500AB39F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E5822348A9E500AB39F9 /* SceneDelegate.swift */; };
 		AD65E5852348A9E500AB39F9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD65E5842348A9E500AB39F9 /* WeatherViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD14DDC423621F7100E4D09E /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		AD65E57D2348A9E500AB39F9 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD65E5802348A9E500AB39F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD65E5822348A9E500AB39F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				ADAE22DF234A3F960014FC62 /* ForecastView */,
 				AD65E5842348A9E500AB39F9 /* WeatherViewController.swift */,
 				ADBF7605234CEEFF004FCC72 /* CitiesView */,
+				AD14DDC423621F7100E4D09E /* SpinnerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				AD65E5832348A9E500AB39F9 /* SceneDelegate.swift in Sources */,
 				AD65E59F2348BB1600AB39F9 /* HttpService.swift in Sources */,
 				ADBF7609234CEF61004FCC72 /* Location.swift in Sources */,
+				AD14DDC523621F7100E4D09E /* SpinnerViewController.swift in Sources */,
 				ADAE22E1234A3FC00014FC62 /* ForecastDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
