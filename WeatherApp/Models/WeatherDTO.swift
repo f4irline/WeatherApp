@@ -18,7 +18,7 @@ class WeatherDTO: NSObject, Codable, NSCoding {
         return "https://api.openweathermap.org/data/2.5/weather?q=\(city)&units=metric&APPID=\(HttpService.API_KEY)"
     }
     
-    static func weatherEndpointByCoordinates(_ coords: CLLocation) -> String {
+    static func weatherEndpointByLocation(_ coords: CLLocation) -> String {
         return "https://api.openweathermap.org/data/2.5/weather?lat=\(coords.coordinate.latitude)&lon=\(coords.coordinate.longitude)&units=metric&APPID=\(HttpService.API_KEY)"
     }
     

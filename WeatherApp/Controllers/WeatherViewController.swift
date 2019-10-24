@@ -7,19 +7,30 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var weatherImg: UIImageView!
     
+    let locationManager = CLLocationManager()
     let httpService: HttpService = HttpService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        let location = locations.last!
+        httpService.weatherByLocation(location, completionHandler: weatherCompleted)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,6 +38,8 @@ class WeatherViewController: UIViewController {
             let location = locations.first(where: { $0.active }) {
             if (location.city != "Use GPS") {
                 httpService.weatherByCity(location.city, completionHandler: weatherCompleted)
+            } else {
+                locationManager.startUpdatingLocation()
             }
         }
     }

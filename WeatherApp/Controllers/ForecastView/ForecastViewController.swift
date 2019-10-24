@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ForecastViewController: UIViewController {
+class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     let forecastDataSource: ForecastDataSource = ForecastDataSource()
+    
+    let locationManager = CLLocationManager()
     let httpService: HttpService = HttpService()
 
     @IBOutlet weak var forecastTable: UITableView!
@@ -17,7 +20,17 @@ class ForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         forecastTable.dataSource = forecastDataSource
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+
         // Do any additional setup after loading the view.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        let location = locations.last!
+        httpService.weatherForecastByLocation(location, completionHandler: forecastCompleted)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -25,6 +38,8 @@ class ForecastViewController: UIViewController {
             let location = locations.first(where: { $0.active }) {
             if (location.city != "Use GPS") {
                 httpService.weatherForecastByCity(location.city, completionHandler: forecastCompleted)
+            } else {
+                locationManager.startUpdatingLocation()
             }
         }
     }
