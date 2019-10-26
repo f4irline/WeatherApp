@@ -80,9 +80,7 @@ class HttpService {
             completionHandler(forecast)
             return
         }
-        
-        NSLog("City: \(city)")
-        
+
         let url: URL? = URL(string: WeatherForecastDTO.forecastEndpointByCity(city))
 
         let config = URLSessionConfiguration.default

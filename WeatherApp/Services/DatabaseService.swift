@@ -58,7 +58,7 @@ final class DatabaseService {
             let data = try NSKeyedArchiver.archivedData(withRootObject: weather, requiringSecureCoding: false)
             weatherDB.set(data, forKey: "\(weather.name)-weather")
             weatherDB.synchronize()
-            NSLog("Saved weather: \(String(describing: weather.date?.description))")
+            NSLog("Saved weather, city: \(weather.name), date: \(String(describing: weather.date?.description))")
         } catch {
             NSLog("Error saving weather")
         }
@@ -69,7 +69,7 @@ final class DatabaseService {
             let data = try NSKeyedArchiver.archivedData(withRootObject: forecast, requiringSecureCoding: false)
             weatherDB.set(data, forKey: "\(forecast.city.name)-forecast")
             weatherDB.synchronize()
-            NSLog("Saved forecast: \(String(describing: forecast.date?.description))")
+            NSLog("Saved forecast, city: \(forecast.city.name), date: \(String(describing: forecast.date?.description))")
         } catch {
             NSLog("Error saving forecast")
         }
@@ -81,7 +81,7 @@ final class DatabaseService {
                 let weather = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherDTO
                 if let date = weather.date?.timeIntervalSinceNow {
                     if (date <= halfHourInSeconds) {
-                        NSLog("Got cached weather, city: \(city)")
+                        NSLog("Got cached weather, city: \(city), date: \(date)")
                         return weather
                     }
                     return nil
@@ -101,7 +101,7 @@ final class DatabaseService {
                 let forecast = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherForecastDTO
                 if let date = forecast.date?.timeIntervalSinceNow {
                     if (date <= halfHourInSeconds) {
-                        NSLog("Got cached forecast, city: \(city)")
+                        NSLog("Got cached forecast, city: \(city), date: \(date)")
                         return forecast
                     }
                     return nil
