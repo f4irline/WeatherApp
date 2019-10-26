@@ -29,7 +29,9 @@ class ForecastDataSource: NSObject, UITableViewDataSource {
         
         cell.textLabel?.text = "\(date.weather.last!.main) \(date.main.temp) \u{00B0}C"
         cell.detailTextLabel?.text = "\(formatter.string(from: isoDate))"
-        cell.imageView?.loadURL(imageUrl!, completeHandler: nil)
+        cell.imageView?.loadURL(imageUrl!, completeHandler: {() -> Void in
+            cell.layoutSubviews()
+        })
 
         return cell
     }
