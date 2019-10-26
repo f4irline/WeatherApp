@@ -19,7 +19,7 @@ class CityCell: UITableViewCell {
         // Initialization code
     }
 
-    @objc override func setSelected(_ selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         if let location = self.location,
@@ -29,7 +29,7 @@ class CityCell: UITableViewCell {
         }
         // Configure the view for the selected state
     }
-    
+
     func setLocation(_ location: Location) {
         self.location = location
         self.textLabel?.text = location.city
