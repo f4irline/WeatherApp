@@ -14,14 +14,6 @@ final class DatabaseService {
     static let halfHourInSeconds: Double = 60 * 30
     static var locations: [Location]?
     
-    static func initCache() {
-        self.initLocations()
-    }
-    
-    static func saveCache() {
-        self.saveLocations()
-    }
-        
     static func initLocations() {
         if let data = locationDB.object(forKey: "locations") as? Data {
             do {
