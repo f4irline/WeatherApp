@@ -11,8 +11,43 @@ import Foundation
 final class DatabaseService {
     static let weatherDB = UserDefaults.standard
     static let locationDB = UserDefaults.standard
+    static let uiDB = UserDefaults.standard
     static let halfHourInSeconds: Double = 60 * 30
     static var locations: [Location]?
+    static var selectedTabIndex: Int?
+    
+    static func initCache() {
+        self.initLocations()
+        self.initTabIndex()
+    }
+
+    static func saveCache() {
+        self.saveLocations()
+        self.saveTabIndex()
+    }
+    
+    static func initTabIndex() {
+        if let data = uiDB.object(forKey: "selectedTabIndex") as? Data {
+            do {
+                let index = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Int
+                self.selectedTabIndex = index
+            } catch {
+                NSLog("Error initializing tab index")
+            }
+        }
+    }
+    
+    static func saveTabIndex() {
+        if let selectedTabIndex = self.selectedTabIndex {
+            print(selectedTabIndex)
+            do {
+                let index = try NSKeyedArchiver.archivedData(withRootObject: selectedTabIndex, requiringSecureCoding: false)
+                uiDB.set(index, forKey: "selectedTabIndex")
+            } catch {
+                NSLog("Error saving selected tab index")
+            }
+        }
+    }
     
     static func initLocations() {
         if let data = locationDB.object(forKey: "locations") as? Data {
