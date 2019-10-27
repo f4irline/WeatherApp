@@ -72,8 +72,8 @@ final class DatabaseService {
             do {
                 let weather = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherDTO
                 if let date = weather.date?.timeIntervalSinceNow {
-                    if (date <= halfHourInSeconds) {
-                        NSLog("Got cached weather, city: \(city), date: \(date)")
+                    if (abs(date) <= halfHourInSeconds) {
+                        NSLog("Got cached weather, city: \(city), date: \(abs(date))")
                         return weather
                     }
                     return nil
@@ -92,8 +92,8 @@ final class DatabaseService {
             do {
                 let forecast = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherForecastDTO
                 if let date = forecast.date?.timeIntervalSinceNow {
-                    if (date <= halfHourInSeconds) {
-                        NSLog("Got cached forecast, city: \(city), date: \(date)")
+                    if (abs(date) <= halfHourInSeconds) {
+                        NSLog("Got cached forecast, city: \(city), date: \(abs(date))")
                         return forecast
                     }
                     return nil
