@@ -31,6 +31,8 @@ The application should not require any special setup. The application should be 
 **NOTE**: Application may work only with Xcode 11+.
 
 ### Images
-<img src="./docs/Weather.png" width="300" alt="Weather">
-<img src="./docs/Forecast.png" width="300" alt="Forecast">
-<img src="./docs/Cities.png" width="300" alt="Cities">
+<div>
+    <img src="./docs/Weather.png" width="300" alt="Weather">
+    <img src="./docs/Forecast.png" width="300" alt="Forecast">
+    <img src="./docs/Cities.png" width="300" alt="Cities">
+</div>
