@@ -32,7 +32,7 @@ The application should not require any special setup. The application should be 
 
 ### Images
 <div>
-    <img src="./docs/Weather.png" width="300" alt="Weather">
-    <img src="./docs/Forecast.png" width="300" alt="Forecast">
-    <img src="./docs/Cities.png" width="300" alt="Cities">
+    <img src="./docs/Weather.png" width="250" alt="Weather">
+    <img src="./docs/Forecast.png" width="250" alt="Forecast">
+    <img src="./docs/Cities.png" width="250" alt="Cities">
 </div>
