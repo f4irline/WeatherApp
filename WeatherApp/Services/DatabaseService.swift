@@ -9,43 +9,31 @@
 import Foundation
 
 final class DatabaseService {
-    static let weatherDB = UserDefaults.standard
     static let locationDB = UserDefaults.standard
-    static let uiDB = UserDefaults.standard
-    static let halfHourInSeconds: Double = 60 * 30
     static var locations: [Location]?
-    static var selectedTabIndex: Int?
-    
-    static func initCache() {
-        self.initLocations()
-        self.initTabIndex()
-    }
+    let weatherDB = UserDefaults.standard
+    let uiDB = UserDefaults.standard
+    let halfHourInSeconds: Double = 60 * 30
 
-    static func saveCache() {
-        self.saveLocations()
-        self.saveTabIndex()
-    }
-    
-    static func initTabIndex() {
+    func getTabIndex() -> Int? {
         if let data = uiDB.object(forKey: "selectedTabIndex") as? Data {
             do {
                 let index = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Int
-                self.selectedTabIndex = index
+                return index
             } catch {
                 NSLog("Error initializing tab index")
+                return nil
             }
         }
+        return nil
     }
     
-    static func saveTabIndex() {
-        if let selectedTabIndex = self.selectedTabIndex {
-            print(selectedTabIndex)
-            do {
-                let index = try NSKeyedArchiver.archivedData(withRootObject: selectedTabIndex, requiringSecureCoding: false)
-                uiDB.set(index, forKey: "selectedTabIndex")
-            } catch {
-                NSLog("Error saving selected tab index")
-            }
+    func saveTabIndex(_ tabIndex: Int) {
+        do {
+            let index = try NSKeyedArchiver.archivedData(withRootObject: tabIndex, requiringSecureCoding: false)
+            uiDB.set(index, forKey: "selectedTabIndex")
+        } catch {
+            NSLog("Error saving selected tab index")
         }
     }
     
@@ -80,7 +68,7 @@ final class DatabaseService {
         }
     }
     
-    static func saveWeather(_ weather: WeatherDTO) {
+    func saveWeather(_ weather: WeatherDTO) {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: weather, requiringSecureCoding: false)
             weatherDB.set(data, forKey: "\(weather.name)-weather")
@@ -91,7 +79,7 @@ final class DatabaseService {
         }
     }
     
-    static func saveForecast(_ forecast: WeatherForecastDTO) {
+    func saveForecast(_ forecast: WeatherForecastDTO) {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: forecast, requiringSecureCoding: false)
             weatherDB.set(data, forKey: "\(forecast.city.name)-forecast")
@@ -102,7 +90,7 @@ final class DatabaseService {
         }
     }
     
-    static func getCachedWeather(_ city: String) -> WeatherDTO? {
+    func getCachedWeather(_ city: String) -> WeatherDTO? {
         if let data = weatherDB.object(forKey: "\(city)-weather") as? Data {
             do {
                 let weather = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherDTO
@@ -122,7 +110,7 @@ final class DatabaseService {
         return nil
     }
     
-    static func getCachedForecast(_ city: String) -> WeatherForecastDTO? {
+    func getCachedForecast(_ city: String) -> WeatherForecastDTO? {
         if let data = weatherDB.object(forKey: "\(city)-forecast") as? Data {
             do {
                 let forecast = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! WeatherForecastDTO

@@ -38,16 +38,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         NSLog("Saving cache")
-        DatabaseService.selectedTabIndex = tabController?.selectedIndex
-        DatabaseService.saveCache()
+        DatabaseService.saveLocations()
+        if let tabIndex = tabController?.selectedIndex {
+            databaseService.saveTabIndex(tabIndex)
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         NSLog("Initializing cache")
-        DatabaseService.initCache()
-        if let selectedTabIndex = DatabaseService.selectedTabIndex {
+        DatabaseService.initLocations()
+        if let selectedTabIndex = databaseService.getTabIndex() {
             tabController?.selectedIndex = selectedTabIndex
         }
     }

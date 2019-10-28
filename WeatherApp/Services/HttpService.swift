@@ -11,10 +11,11 @@ import CoreLocation
 
 class HttpService {
     static let API_KEY = "c52ed41e6b828d41c7a301e0e191d409"
+    let databaseService = DatabaseService()
     
     func weatherByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherDTO) -> Void) {
         let city = city.replacingOccurrences(of: " ", with: "+")
-        let cachedWeather = DatabaseService.getCachedWeather(city)
+        let cachedWeather = databaseService.getCachedWeather(city)
 
         if let weather = cachedWeather {
             completionHandler(weather)
@@ -32,7 +33,7 @@ class HttpService {
                 let weather = try decoder.decode(WeatherDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weather.date = Date()
-                    DatabaseService.saveWeather(weather)
+                    self.databaseService.saveWeather(weather)
                     completionHandler(weather)
                 }
             } catch {
@@ -58,7 +59,7 @@ class HttpService {
                 let weather = try decoder.decode(WeatherDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weather.date = Date()
-                    DatabaseService.saveWeather(weather)
+                    self.databaseService.saveWeather(weather)
                     completionHandler(weather)
                 }
             } catch {
@@ -74,7 +75,7 @@ class HttpService {
     
     func weatherForecastByCity(_ city: String, completionHandler: @escaping (_ weather: WeatherForecastDTO) -> Void) {
         let city = city.replacingOccurrences(of: " ", with: "+")
-        let cachedForecast = DatabaseService.getCachedForecast(city)
+        let cachedForecast = databaseService.getCachedForecast(city)
         
         if let forecast = cachedForecast {
             completionHandler(forecast)
@@ -92,7 +93,7 @@ class HttpService {
                 let weatherForecast = try decoder.decode(WeatherForecastDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weatherForecast.date = Date()
-                    DatabaseService.saveForecast(weatherForecast)
+                    self.databaseService.saveForecast(weatherForecast)
                     completionHandler(weatherForecast)
                 }
             } catch {
@@ -118,7 +119,7 @@ class HttpService {
                 let weatherForecast = try decoder.decode(WeatherForecastDTO.self, from: data!)
                 DispatchQueue.main.async {
                     weatherForecast.date = Date()
-                    DatabaseService.saveForecast(weatherForecast)
+                    self.databaseService.saveForecast(weatherForecast)
                     completionHandler(weatherForecast)
                 }
             } catch {
